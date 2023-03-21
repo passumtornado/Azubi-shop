@@ -17,7 +17,7 @@ function Card({item}) {
           <Link to={`/product/${item.id}`}>
           <Button name='place order'/>
           </Link>
-          <span>{item.price}</span>
+          <span>$ {item.price}</span>
         </div>
     </div>
   )

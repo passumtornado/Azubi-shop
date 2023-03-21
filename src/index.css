@@ -90,6 +90,9 @@ p{
 .btn.btn-danger{
   background:var(--danger) !important;
  }
+ .btn.btn-outline{
+  background: var(--medium-grey);
+ }
  .btn:hover{
   background: var(--light);
  }

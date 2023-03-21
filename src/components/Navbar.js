@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import logo from '../logo.svg'
 import {Link,NavLink,useNavigate,useLocation} from 'react-router-dom'
 import Button from './Button'
@@ -6,7 +6,14 @@ import { CartState } from '../context/ContextProvider'
 
 function Navbar() {
     const location = useLocation()
-     const {state:{cart}} = CartState()
+     const {state:{cart,user}} = CartState()
+     const [credential,setCredential]=useState(user)
+     const navigate = useNavigate()
+
+     function handleLogout(){
+      localStorage.removeItem('isLoggedin')
+      navigate('/login')
+     }
   return (
     <div className='navbar-nav'>
       <div className='navbar-brand'>
@@ -37,9 +44,12 @@ function Navbar() {
         </NavLink>
       </div>
       <div className='navbar-btn'>
-      <Link to='/login'>
-           <Button name='Login'/>
-        </Link>
+        {
+         credential?(<button className='btn btn-outline' onClick={handleLogout}>logout</button>):(<Link to='/login'>
+         <Button name='Login'/>
+      </Link>)
+        }
+      
       </div>
        </>)
        }

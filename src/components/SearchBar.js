@@ -1,8 +1,19 @@
 import React,{useState,useEffect} from 'react'
 import {FaSearch} from 'react-icons/fa'
+import { CartState } from '../context/ContextProvider'
 
-function SearchBar({products,setProducts}) {
+function SearchBar() {
   const [query,setQuery] = useState('')
+  const {state:{products},dispatch} = CartState()
+
+  useEffect(()=>{
+    if(query){
+     dispatch({
+      type:'SEARCH_PRODUCT',
+      payload:query
+     })
+    }
+  },[dispatch,query])
 
   // useEffect(()=>{
   //   if(!query) return setProducts(data)
